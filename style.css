@@ -3,3 +3,26 @@
     padding: 0;
     box-sizing: border-box;
 }
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.first_page{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: repeat(5,1fr);
+    gap: 10px;
+}
+.first_page div {
+ width: 150px;
+ height: 150px;
+ border: 1px solid black;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ border-radius: 50%;
+ cursor: pointer;
+ background-color: gray;
+ color: white;
+}
