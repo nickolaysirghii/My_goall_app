@@ -64,6 +64,7 @@ const dataArray = [
                 color.classList.add("descriotion_color");
                 par.innerText = el.title;
                 color.style.backgroundColor = el.color;
+                color.addEventListener("click",dataArray[0].inner[0].click_on_work_description)
 
                 descriptionParts.append(par,color)
 
@@ -71,7 +72,6 @@ const dataArray = [
             });
 
 
-            
             statisticContainer.append(back,par,description, statistic_inside);
             contianer.append(statisticContainer);
             
@@ -80,26 +80,30 @@ const dataArray = [
                 dataArray[0].statisticArray.forEach(el => {
               const beginingSleap = (el.sleap[0]*60)+(el.sleap[1]);
               const endSleap = (el.sleap[2]*60)+(el.sleap[3]);
-              const beginingWork = (el.work[0]*60)+(el.work[1]);
-              const endWork = (el.work[2]*60)+(el.work[3]);
+              const beginingWork1 = (el.work1[0]*60)+(el.work1[1]);
+              const endWork1 = (el.work1[2]*60)+(el.work1[3]);
+              const beginingWork2 = (el.work2[0]*60)+(el.work2[1]);
+              const endWork2 = (el.work2[2]*60)+(el.work2[3]);
+              
               const sleap = document.createElement("div");
-              const work = document.createElement("div");
+              const work1 = document.createElement("div");
+              const work2 = document.createElement("div");
               sleap.style.gridColumn = `${beginingSleap}/${endSleap}`;
-              work.style.gridColumn = `${beginingWork}/${endWork}`;
+              work1.style.gridColumn = `${beginingWork1}/${endWork1}`;
+              work2.style.gridColumn = `${beginingWork2}/${endWork2}`;
               sleap.innerText = el.date;
+              work1.innerText = "work1";
+              work2.innerText = "work2";
 
               sleap.classList.add("sleap");
-              work.classList.add("work");
+              work1.classList.add("work1");
+              work2.classList.add("work2");
+
               sleap.addEventListener("click",dataArray[0].inner[0].click_in_sleap)
-              statistic_inside.append(sleap,work); 
+              statistic_inside.append(sleap,work1,work2); 
             });
 
             };position_of_sleap();
-
-      
-
-
-
         },
         inner: [
             {
@@ -120,6 +124,41 @@ const dataArray = [
                 },
                 click_in_sleap: ()=>{
                     console.log("sleap")
+                },
+                click_on_work_description: ()=>{
+                    contianer.innerHTML = "";
+                    const back = document.createElement("div");
+                    const par = document.createElement("p");
+                    const descriptionContainer = document.createElement("div");
+                    const informHours = document.createElement("p");
+                    back.innerText = "back";
+                    par.innerText = "work information";
+                    back.classList.add("statisticsBackButton");
+                    descriptionContainer.classList.add("description_work_container");
+                    descriptionContainer.append(informHours)
+                    contianer.append(back,par,descriptionContainer);
+                    back.addEventListener("click",dataArray[0].do);
+
+
+                    let hours_of_work = 0;
+                    dataArray[0].statisticArray.forEach(el => {
+                        const begins1 = (el.work1[0]*60)+(el.work1[1]);
+                        const ends1 = (el.work1[2]*60)+(el.work1[3]);
+
+                        const begins2 = (el.work2[0]*60)+(el.work2[1]);
+                        const ends2 = (el.work2[2]*60)+(el.work2[3]);
+
+
+                        const hours1 = (ends1 - begins1)/60;
+                        const hours2 = (ends2 - begins2)/60;
+                        const total = hours1 + hours2;
+                        hours_of_work = hours_of_work + total;
+                    })
+                  
+                    
+                    informHours.innerText = `Total hours of work: ${hours_of_work}`;
+
+
                 }
             }
         ],
@@ -141,13 +180,15 @@ const dataArray = [
                 id:1,
                 date: "04,06,2023",
                 sleap:[0,01,6,0],
-                work: [21,0,24,0]
+                work1: [21,0,24,0],
+                work2: [0,1,6,0]
             },
             {
                 id:1,
                 date: "05,06,2023",
                 sleap:[6,01,13,0],
-                work: [20,0,24,0]
+                work1: [20,0,24,0],
+                work2: [0,1,6,0]
             }
 
         ]
