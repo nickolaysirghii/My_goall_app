@@ -58,14 +58,31 @@
     top: 8vw;
     display: grid;
     grid-template-columns: repeat(1440,1fr);
-    grid-template-rows: repeat(20,1fr);
+    grid-template-rows: repeat(70,1fr);
     background-image: url("images/cell.png");
     background-size: contain;
     padding-top: 1.5vw;
+    row-gap: 0.1vw;
+    
 
 }
 .sleap{
     background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1vw;
+    
+}
+.work{
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1vw;
+
 }
 .descritionWindow{
     border: 1px solid black;
@@ -78,9 +95,19 @@
     align-items: center;
 }
 .descriptionParts{
-    width: 50px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+}
+.description_par{
+
+}
+.descriotion_color{
+    width: 30px;
     height: 30px;
-    background-color: aqua;
 }
 /*==========================================================*/
 /*                    statistic end                         */

@@ -26,12 +26,49 @@ const dataArray = [
             description.classList.add("descritionWindow");
             
             back.addEventListener("click",dataArray[0].inner[0].do);
+
+            const descriptionData = [
+                {
+                    id:1,
+                    title: "Sleep",
+                    color: "red"
+                },
+                {
+                    id:2,
+                    title: "work",
+                    color: "black"
+                },
+                {
+                    id:3,
+                    title: "learn",
+                    color: "blue"
+                },
+                {
+                    id:4,
+                    title: "walk",
+                    color: "green"
+                },
+                {
+                    id:5,
+                    title: "buy",
+                    color: "yellow"
+                }
+            ];
              
-            for(let i = 0 ; i<5 ; i++){
+             descriptionData.forEach(el => {
                 const descriptionParts = document.createElement("div");
+                const par = document.createElement("p");
+                const color = document.createElement("div");
                 descriptionParts.classList.add("descriptionParts");
+                par.classList.add("description_par");
+                color.classList.add("descriotion_color");
+                par.innerText = el.title;
+                color.style.backgroundColor = el.color;
+
+                descriptionParts.append(par,color)
+
                 description.append(descriptionParts);
-            }
+            });
 
 
             
@@ -39,18 +76,27 @@ const dataArray = [
             contianer.append(statisticContainer);
             
 
-            const position_of_element = ()=>{
+            const position_of_sleap = ()=>{
                 dataArray[0].statisticArray.forEach(el => {
-              console.log(el.sleap)
-              const begining = (el.sleap[0]*60)+(el.sleap[1]);
-              const end = (el.sleap[2]*60)+(el.sleap[3]);
-              const leap = document.createElement("div");
-              leap.style.gridColumn = `${begining}/${end}`;
-              leap.classList.add("sleap");
-              statistic_inside.append(leap)
+              const beginingSleap = (el.sleap[0]*60)+(el.sleap[1]);
+              const endSleap = (el.sleap[2]*60)+(el.sleap[3]);
+              const beginingWork = (el.work[0]*60)+(el.work[1]);
+              const endWork = (el.work[2]*60)+(el.work[3]);
+              const sleap = document.createElement("div");
+              const work = document.createElement("div");
+              sleap.style.gridColumn = `${beginingSleap}/${endSleap}`;
+              work.style.gridColumn = `${beginingWork}/${endWork}`;
+              sleap.innerText = el.date;
+
+              sleap.classList.add("sleap");
+              work.classList.add("work");
+              sleap.addEventListener("click",dataArray[0].inner[0].click_in_sleap)
+              statistic_inside.append(sleap,work); 
             });
 
-            };position_of_element()
+            };position_of_sleap();
+
+      
 
 
 
@@ -71,6 +117,9 @@ const dataArray = [
                     first_page.append(btn);
                 });
                 contianer.append(first_page);
+                },
+                click_in_sleap: ()=>{
+                    console.log("sleap")
                 }
             }
         ],
@@ -90,9 +139,17 @@ const dataArray = [
         statisticArray:[
             {
                 id:1,
-                date:"04,06,2023",
-                sleap: [00,45,23,20]
+                date: "04,06,2023",
+                sleap:[0,01,6,0],
+                work: [21,0,24,0]
+            },
+            {
+                id:1,
+                date: "05,06,2023",
+                sleap:[6,01,13,0],
+                work: [20,0,24,0]
             }
+
         ]
     },
     {
