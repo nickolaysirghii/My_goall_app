@@ -31,27 +31,186 @@ const dataArray = [
                 {
                     id:1,
                     title: "Sleep",
-                    color: "red"
+                    color: "red",
+                    counting_function: ()=>{
+                        contianer.innerHTML = "";
+                       
+                        //============================================
+                        //                   FORM                   //
+                        //============================================
+                        const Form = document.createElement("form");
+                        const beginingInput = document.createElement("input");
+                        const endInput = document.createElement("input");
+                        const btnForm = document.createElement("button");
+                        btnForm.innerText = "check";
+                        
+                        beginingInput.type = "text";
+                        beginingInput.placeholder = "begining";
+                        beginingInput.name = "begining";
+                        endInput.type = "text";
+                        endInput.placeholder = "end";
+                        endInput.name = "end";
+                        Form.append(beginingInput,endInput,btnForm);
+                        Form.classList.add("statisticForm");
+    
+                        //============================================
+                        //                   FORM                   //
+                        //============================================
+                        const back = document.createElement("div");
+                        const descriptionContainer = document.createElement("div");
+                        //..................................................
+                        const informHours = document.createElement("p");
+                        
+                        informHours.innerText = `Total hours of sleap:`;
+                        
+                        informHours.classList.add("total_hours_par");
+                        
+                        //..................................................
+                        back.innerText = "back";
+                        back.classList.add("statisticsBackButton");
+                        descriptionContainer.classList.add("description_work_container");
+                        descriptionContainer.append(Form,informHours)
+                        contianer.append(back,descriptionContainer);
+                        back.addEventListener("click",dataArray[0].do);
+    
+                        
+                        
+    
+                        const work_form_counting = (e)=>{
+                            e.preventDefault();
+                            let from = 0;
+                            let to = 0;
+                            let amount = 0;
+                            dataArray[0].statisticArray.forEach(el => {
+                             if(el.date === e.target.begining.value){
+                                from = el.id
+                             };
+                             if(el.date === e.target.end.value){
+                                to = el.id
+                             };});
+                            dataArray[0].statisticArray.forEach(el => {
+                                const sleap1 = (((el.sleap[2]*60)+el.sleap[3])-((el.sleap[0]*60)+el.sleap[1]))/60;
+    
+                
+                                
+                                if(el.id >= from && el.id <= to){
+                                  amount = amount + sleap1;  
+                                }
+                            });
+                         
+                            informHours.innerText = `Total hours of sleap:${amount}`;
+                
+                            
+                            e.target.reset();
+                            
+                        };
+                        
+                        Form.addEventListener("submit",work_form_counting);
+                        }
                 },
                 {
                     id:2,
                     title: "work",
-                    color: "black"
+                    color: "black",
+                    counting_function: ()=>{
+                        contianer.innerHTML = "";
+                       
+                        //============================================
+                        //                   FORM                   //
+                        //============================================
+                        const Form = document.createElement("form");
+                        const beginingInput = document.createElement("input");
+                        const endInput = document.createElement("input");
+                        const btnForm = document.createElement("button");
+                        btnForm.innerText = "check";
+                        
+                        beginingInput.type = "text";
+                        beginingInput.placeholder = "begining";
+                        beginingInput.name = "begining";
+                        endInput.type = "text";
+                        endInput.placeholder = "end";
+                        endInput.name = "end";
+                        Form.append(beginingInput,endInput,btnForm);
+                        Form.classList.add("statisticForm");
+    
+                        //============================================
+                        //                   FORM                   //
+                        //============================================
+                        const back = document.createElement("div");
+                        const descriptionContainer = document.createElement("div");
+                        //..................................................
+                        const informHours = document.createElement("p");
+                        const informMoney = document.createElement("p");
+                        informHours.innerText = `Total hours of work:`;
+                        informMoney.innerText = "Total Money";
+                        informHours.classList.add("total_hours_par");
+                        informMoney.classList.add("totalMoney");
+                        //..................................................
+                        back.innerText = "back";
+                        back.classList.add("statisticsBackButton");
+                        descriptionContainer.classList.add("description_work_container");
+                        descriptionContainer.append(Form,informHours,informMoney)
+                        contianer.append(back,descriptionContainer);
+                        back.addEventListener("click",dataArray[0].do);
+    
+                        
+                        
+    
+                        const work_form_counting = (e)=>{
+                            e.preventDefault();
+                            let from = 0;
+                            let to = 0;
+                            let amount = 0;
+                            dataArray[0].statisticArray.forEach(el => {
+                             if(el.date === e.target.begining.value){
+                                from = el.id
+                             };
+                             if(el.date === e.target.end.value){
+                                to = el.id
+                             };});
+                            dataArray[0].statisticArray.forEach(el => {
+                                const work_1_total = (((el.work1[2]*60)+el.work1[3])-((el.work1[0]*60)+el.work1[1]))/60;
+                                const work_2_total = (((el.work2[2]*60)+el.work2[3])-((el.work2[0]*60)+el.work2[1]))/60;
+                                const total  = work_1_total+work_2_total;
+                                
+                                if(el.id >= from && el.id <= to){
+                                  amount = amount +total;  
+                                }
+                            });
+                         
+                            informHours.innerText = `Total hours of work:${amount}`;
+                            informMoney.innerText = `Total money:${amount*19} pl.`
+                            
+                            e.target.reset();
+                            
+                        };
+                        
+                        Form.addEventListener("submit",work_form_counting);
+                        }
                 },
                 {
                     id:3,
                     title: "learn",
-                    color: "blue"
+                    color: "blue",
+                    counting_function: ()=>{
+                        console.log("learn");
+                    }
                 },
                 {
                     id:4,
                     title: "walk",
-                    color: "green"
+                    color: "green",
+                    counting_function: ()=>{
+                        console.log("walk");
+                    }
                 },
                 {
                     id:5,
                     title: "buy",
-                    color: "yellow"
+                    color: "yellow",
+                    counting_function: ()=>{
+                        console.log("buy");
+                    }
                 }
             ];
              
@@ -64,7 +223,7 @@ const dataArray = [
                 color.classList.add("descriotion_color");
                 par.innerText = el.title;
                 color.style.backgroundColor = el.color;
-                color.addEventListener("click",dataArray[0].inner[0].click_on_work_description)
+                color.addEventListener("click",el.counting_function)
 
                 descriptionParts.append(par,color)
 
@@ -92,15 +251,13 @@ const dataArray = [
               work1.style.gridColumn = `${beginingWork1}/${endWork1}`;
               work2.style.gridColumn = `${beginingWork2}/${endWork2}`;
               sleap.innerText = el.date;
-              work1.innerText = "work1";
-              work2.innerText = "work2";
 
               sleap.classList.add("sleap");
               work1.classList.add("work1");
               work2.classList.add("work2");
 
               sleap.addEventListener("click",dataArray[0].inner[0].click_in_sleap)
-              statistic_inside.append(sleap,work1,work2); 
+              statistic_inside.append(work1,sleap,work2); 
             });
 
             };position_of_sleap();
@@ -122,46 +279,11 @@ const dataArray = [
                 });
                 contianer.append(first_page);
                 },
-                click_in_sleap: ()=>{
-                    console.log("sleap")
-                },
-                click_on_work_description: ()=>{
-                    contianer.innerHTML = "";
-                    const back = document.createElement("div");
-                    const par = document.createElement("p");
-                    const descriptionContainer = document.createElement("div");
-                    const informHours = document.createElement("p");
-                    back.innerText = "back";
-                    par.innerText = "work information";
-                    back.classList.add("statisticsBackButton");
-                    descriptionContainer.classList.add("description_work_container");
-                    descriptionContainer.append(informHours)
-                    contianer.append(back,par,descriptionContainer);
-                    back.addEventListener("click",dataArray[0].do);
-
-
-                    let hours_of_work = 0;
-                    dataArray[0].statisticArray.forEach(el => {
-                        const begins1 = (el.work1[0]*60)+(el.work1[1]);
-                        const ends1 = (el.work1[2]*60)+(el.work1[3]);
-
-                        const begins2 = (el.work2[0]*60)+(el.work2[1]);
-                        const ends2 = (el.work2[2]*60)+(el.work2[3]);
-
-
-                        const hours1 = (ends1 - begins1)/60;
-                        const hours2 = (ends2 - begins2)/60;
-                        const total = hours1 + hours2;
-                        hours_of_work = hours_of_work + total;
-                    })
-                  
-                    
-                    informHours.innerText = `Total hours of work: ${hours_of_work}`;
-
-
-                }
-            }
+               
+            },
+            
         ],
+        description_form_functions: [],
         styles: [
         {
             id:1,
@@ -179,16 +301,37 @@ const dataArray = [
             {
                 id:1,
                 date: "04,06,2023",
-                sleap:[0,01,6,0],
-                work1: [21,0,24,0],
-                work2: [0,1,6,0]
+                sleap:[07,01,13,00],
+                work1: [0,1,06,0],
+                work2: [21,0,24,0]
             },
             {
-                id:1,
+                id:2,
                 date: "05,06,2023",
-                sleap:[6,01,13,0],
-                work1: [20,0,24,0],
-                work2: [0,1,6,0]
+                sleap:[6,5,11,11],
+                work1: [0,1,5,15],
+                work2: [20,30,24,0]
+            },
+            {
+                id:3,
+                date: "06,06,2023",
+                sleap:[8,15,11,55],
+                work1: [0,1,7,10],
+                work2: [20,30,24,0]
+            },
+            {
+                id:4,
+                date: "07,06,2023",
+                sleap:[6,45,12,45],
+                work1: [0,1,6,5],
+                work2: [22,0,24,0]
+            },
+            {
+                id:5,
+                date: "08,06,2023",
+                sleap:[6,33,13,9],
+                work1: [0,1,5,30],
+                work2: [0,1,0,2]
             }
 
         ]
