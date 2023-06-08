@@ -60,11 +60,11 @@ const dataArray = [
                 statistic_inside.append(sleap);
               };
               if((beginingSleap2+endSleap2)>0){
-                const sleap = document.createElement("div");
-                sleap.style.gridColumn = `${beginingSleap}/${endSleap}`;
-                sleap.style.gridRow = `${el.id}/${el.id+1}`;
-                sleap.classList.add("sleap");
-                statistic_inside.append(sleap);
+                const sleap2 = document.createElement("div");
+                sleap2.style.gridColumn = `${beginingSleap2}/${endSleap2}`;
+                sleap2.style.gridRow = `${el.id}/${el.id+1}`;
+                sleap2.classList.add("sleap");
+                statistic_inside.append(sleap2);
               };
               if((beginingWork1+endWork1)>0){
                const work1 = document.createElement("div");
@@ -124,11 +124,9 @@ const dataArray = [
                         const btnForm = document.createElement("button");
                         btnForm.innerText = "check";
                         
-                        beginingInput.type = "text";
-                        beginingInput.placeholder = "begining";
+                        beginingInput.type = "date";
                         beginingInput.name = "begining";
-                        endInput.type = "text";
-                        endInput.placeholder = "end";
+                        endInput.type = "date";
                         endInput.name = "end";
                         Form.append(beginingInput,endInput,btnForm);
                         Form.classList.add("statisticForm");
@@ -173,7 +171,8 @@ const dataArray = [
                                   amount = amount + total;
                                 }
                             });
-                            informHours.innerText = `Total hours of sleap:${amount}`;
+                            const shorted = Math.floor(amount*100)/100;
+                            informHours.innerHTML = `Total hours of sleap: <span class="red">${shorted}</span>`;
                             e.target.reset();
                             
                         };
@@ -196,11 +195,9 @@ const dataArray = [
                         const btnForm = document.createElement("button");
                         btnForm.innerText = "check";
                         
-                        beginingInput.type = "text";
-                        beginingInput.placeholder = "begining";
+                        beginingInput.type = "date";
                         beginingInput.name = "begining";
-                        endInput.type = "text";
-                        endInput.placeholder = "end";
+                        endInput.type = "date";
                         endInput.name = "end";
                         Form.append(beginingInput,endInput,btnForm);
                         Form.classList.add("statisticForm");
@@ -213,15 +210,18 @@ const dataArray = [
                         //..................................................
                         const informHours = document.createElement("p");
                         const informMoney = document.createElement("p");
+                        const infoRent = document.createElement("p");
                         informHours.innerText = `Total hours of work:`;
-                        informMoney.innerText = "Total Money";
+                        informMoney.innerText = "Total Money:";
+                        infoRent.innerText = "Rent period:"
                         informHours.classList.add("total_hours_par");
                         informMoney.classList.add("totalMoney");
+                        infoRent.classList.add("infoRent");
                         //..................................................
                         back.innerText = "back";
                         back.classList.add("statisticsBackButton");
                         descriptionContainer.classList.add("description_work_container");
-                        descriptionContainer.append(Form,informHours,informMoney)
+                        descriptionContainer.append(Form,informHours,informMoney,infoRent)
                         contianer.append(back,descriptionContainer);
                         back.addEventListener("click",dataArray[0].do);
     
@@ -233,6 +233,7 @@ const dataArray = [
                             let from = 0;
                             let to = 0;
                             let amount = 0;
+                            let rent = 0;
                             dataArray[0].statisticArray.forEach(el => {
                              if(el.date === e.target.begining.value){
                                 from = el.id
@@ -247,11 +248,19 @@ const dataArray = [
                                 
                                 if(el.id >= from && el.id <= to){
                                   amount = amount +total;  
+                                  rent = rent+1;
                                 }
                             });
+
+                            const shorted = Math.floor(amount*100)/100;
+                            const shorted_1 = shorted*19;
+                            const shortedmoney = Math.floor(shorted_1*100)/100;
+                            const shortedRent = Math.floor((rent*13.4)*100)/100;
                          
-                            informHours.innerText = `Total hours of work:${amount}`;
-                            informMoney.innerText = `Total money:${amount*19} pl.`
+                            informHours.innerHTML = `Total hours of work: <span class="red">${shorted}</span>`;
+                            informMoney.innerHTML = `Total money: <span class="red">${shortedmoney}</span> pl.`;
+                            infoRent.innerHTML = `Rent period: <span class="red">${shortedRent}</span>`;
+
                             
                             e.target.reset();
                             
@@ -276,11 +285,9 @@ const dataArray = [
                         const btnForm = document.createElement("button");
                         btnForm.innerText = "check";
                         
-                        beginingInput.type = "text";
-                        beginingInput.placeholder = "begining";
+                        beginingInput.type = "date";
                         beginingInput.name = "begining";
-                        endInput.type = "text";
-                        endInput.placeholder = "end";
+                        endInput.type = "date";
                         endInput.name = "end";
                         Form.append(beginingInput,endInput,btnForm);
                         Form.classList.add("statisticForm");
@@ -327,7 +334,8 @@ const dataArray = [
                                   amount = amount + total;
                                 }
                             });
-                            informHours.innerText = `Total free hours:${amount}`;
+                            const shorted = Math.floor(amount*100)/100;
+                            informHours.innerHTML = `Total free hours: <span class="red">${shorted}</span>`;
                             e.target.reset();
                             
                         };
@@ -366,17 +374,18 @@ const dataArray = [
         
         }],
         statisticArray:[
+
             {
                 id:1,
-                date: "04,06,2023",
-                sleap:[07,01,13,00],
+                date: "2023-06-04",
+                sleap: [7,1,13,0],
                 sleap2:[0,0,0,0],
-                work1: [0,1,06,0],
+                work1: [0,1,6,0],
                 work2: [21,0,24,0]
             },
             {
                 id:2,
-                date: "05,06,2023",
+                date: "2023-06-05",
                 sleap:[6,5,11,11],
                 sleap2:[0,0,0,0],
                 work1: [0,1,5,15],
@@ -384,7 +393,7 @@ const dataArray = [
             },
             {
                 id:3,
-                date: "06,06,2023",
+                date: "2023-06-06",
                 sleap:[8,15,11,55],
                 sleap2:[0,0,0,0],
                 work1: [0,1,7,10],
@@ -392,7 +401,7 @@ const dataArray = [
             },
             {
                 id:4,
-                date: "07,06,2023",
+                date: "2023-06-07",
                 sleap:[6,45,12,45],
                 sleap2:[0,0,0,0],
                 work1: [0,1,6,5],
@@ -400,7 +409,7 @@ const dataArray = [
             },
             {
                 id:5,
-                date: "08,06,2023",
+                date: "2023-06-08",
                 sleap:[6,33,13,9],
                 sleap2:[0,0,0,0],
                 work1: [0,1,5,30],
@@ -408,10 +417,10 @@ const dataArray = [
             },
             {
                 id:6,
-                date: "09,06,2023",
+                date: "2023-06-09",
                 sleap:[0,0,0,0],
                 sleap2:[0,0,0,0],
-                work1: [0,0,0,0],
+                work1: [22,0,24,0],
                 work2: [0,0,0,0]
             }
 

@@ -145,6 +145,14 @@ color: white
     position: absolute;
     top: 8vw;
 }
+.infoRent{
+    position: absolute;
+    top: 10vw;
+}
+.red{
+    color: red;
+    font-weight: bolder;
+}
 /*==========================================================*/
 /*                    statistic end                         */
 /*==========================================================*/
