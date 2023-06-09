@@ -419,7 +419,7 @@ const dataArray = [
                 id:6,
                 date: "2023-06-09",
                 sleap:[0,50,6,30],
-                sleap2:[0,0,0,0],
+                sleap2:[9,11,12,3],
                 work1: [0,0,0,0],
                 work2: [22,0,24,0]
             },
@@ -535,14 +535,46 @@ contianer.append(first_page);
         id:5,
         title: "Time/Money",
         do: ()=>{ contianer.innerHTML = "";
-        const stat = document.createElement("div");
-        const par = document.createElement("p");
+        const box = document.createElement("div");
         const back = document.createElement("p");
         back.innerText = "back";
-        par.innerText = "Time/Money";
+        back.classList.add("statisticsBackButton");
+        box.classList.add("money_container");
         back.addEventListener("click",dataArray[0].inner[0].do);
-        stat.append(back,par);
-        contianer.append(stat);},
+        contianer.append(back,box);
+        //==================================================================//
+        //                             form                                 //
+        //==================================================================//
+        const form = document.createElement("form");
+        const first_input = document.createElement("input");
+        const second_input = document.createElement("input");
+        const btn = document.createElement("button");
+        form.classList.add("moneyForm");
+        btn.innerText = "set";
+        first_input.type = "date";
+        first_input.name = "firstInput";
+        second_input.type = "date";
+        second_input.name = "secondInput";
+        form.append(first_input,second_input,btn);
+        contianer.append(form);
+        //==================================================================//
+        //                          form  end                               //
+        //==================================================================//
+
+        const state = document.createElement("p");
+        state.innerText = "State:";
+        box.append(state);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    },
         inner: [ {
             id:1,
             do: ()=>{
@@ -564,11 +596,46 @@ contianer.append(first_page);
             title: "grid",
             row: "4/5",
             column: "3/4"
-        }]
+        }],
+        MoneyStatistic: [
+            {
+                id:1,
+                date: "2023-06-09",
+                workIncome: 0,
+                investIncome: 0,
+                rendomIncome: 2,
+                outcome_1_level: 0,
+                outcome_2_level: 0,
+                outcome_3_level: 0,
+                outcome_charity: 0
+            },
+            {
+                id:2,
+                date: "2023-06-10",
+                workIncome: 0,
+                investIncome: 0,
+                rendomIncome: 0,
+                outcome_1_level: 0,
+                outcome_2_level: 0,
+                outcome_3_level: 0,
+                outcome_charity: 0
+            },
+            {
+                id:3,
+                date: "2023-06-11",
+                workIncome: 0,
+                investIncome: 0,
+                rendomIncome: 0,
+                outcome_1_level: 0,
+                outcome_2_level: 0,
+                outcome_3_level: 0,
+                outcome_charity: 0
+            }
+        ]
     }
 ];
 //======================================================================//
 //                             END OF DATA                              //
 //======================================================================//
 
-dataArray[0].inner[0].do()
+dataArray[0].inner[0].do();
